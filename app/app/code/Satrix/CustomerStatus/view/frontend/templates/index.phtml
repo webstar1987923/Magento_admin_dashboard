@@ -1,0 +1,30 @@
+<?php 
+$status = $block->getCustomerStatus();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance(); 
+$FormKey = $objectManager->get('Magento\Framework\Data\Form\FormKey'); 
+?>
+<form class="form form-edit-account" action="<?php /* @escapeNotVerified */ echo $block->getUrl('satrix/index/post') ?>" method="post">
+	<div class="block block-dashboard-info">
+		<div class="block-title"><strong>Customer Status</strong></div>
+		<div class="block-content">
+			<div class="box box-information">
+				<strong class="box-title">
+					<span>Status</span>
+				</strong>
+				<div class="box-content">
+					<input type="hidden" name="form_key" value="<?php echo $FormKey->getFormKey();?>" />
+					<select name="customer_status">
+						<option value="">Please select status</option>
+						<option value="1" <?php if($status == 1){echo 'selected="selected"';}?>>Enable</option>
+						<option value="2" <?php if($status == 2){echo 'selected="selected"';}?>>Disable</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action save primary btn btn-primary btn-lg" title="<?php /* @escapeNotVerified */ echo __('Save') ?>"><span><?php /* @escapeNotVerified */ echo __('Save') ?></span></button>
+        </div>
+    </div>
+</form>
